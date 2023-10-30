@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row pt-4 pb-2 text-center">
+        <div class="col-6 text-primary">
+            <h2>List Of Orders</h2>
+
+        </div>
+        
+    </div>
+
+
+<table class="table table-bordered table-striped ">
+
+   
+        <tr>
+            <th>Name</th>
+            <th>Payment Mode</th>
+            <th>Total Amount</th>
+            <th>Order date</th>
+            <th>Is Approved</th>
+            <th class="text-center">Action</th>
+
+        </tr>
+       
+    
+        <tr *ngFor ="let p of orderServ.listOrder  |  paginate : { itemsPerPage: 5, currentPage: p }" [ngClass]="{'bgColrG':p.IsVerified , 'bgColr' : !p.IsVerified}" >
+            <td> {{p.UserName}}</td>
+            <td> {{p.Payment_Status}}</td>
+            <td> {{p.TotalAmount}}</td>
+           
+            <td>{{p.DateOfOrder |date: 'yyyy-MM-dd'}}</td>
+            <td  >{{p.IsVerified}}</td>
+            <td >
+                <div class="w-75 btn-group m-1 " role="group">
+
+
+                    <a  class="btn btn-outline-primary ps-1" (click)="populateDrug(p)" [routerLink]="['/orderEdit']" routerLinkActive="router-link-active" >
+                            <i class="bi bi-pencil-square"></i>Edit
+                    </a>
+                        <a  (click)="DeleteDrug(p.OrderId)" class="btn btn-outline-danger ms-4">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                </div>
+
+            </td>
+        </tr>
+
+
+    
+
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
+
+<app-footer></app-footer>

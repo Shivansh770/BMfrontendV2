@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row pt-4 pb-2 text-center">
+        <div class="col-6 text-primary">
+            <h2 style="color: white;">Drug List</h2>
+
+        </div>
+        <div class="col-6 text-end">
+            <a  class="btn btn-primary" (click)="populateDrug(drugService.DrugData)" [routerLink]="['/drugEdit']">
+                <i class="bi bi-person-add" style="color: white;"></i>Add Drugs
+            </a>
+
+        </div>
+    </div>
+
+
+
+
+
+<table class="table table-bordered table-striped ">
+
+   
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Expiry Date</th>
+
+            <th class="text-center">Action</th>
+
+        </tr>
+       
+    
+        <tr *ngFor ="let p of drugService.listDrug | paginate : { itemsPerPage: 8, currentPage: p }">
+            <td> {{p.DrugName}}</td>
+            <td> {{p.Price}}</td>
+            <td>{{p.Description}}</td>
+            <td>{{p.ExpiryDate |date: 'yyyy-MM-dd'}}</td>
+            <td >
+                <div class="w-75 btn-group m-1 " role="group">
+
+
+                    <a  class="btn btn-outline-primary ps-1" (click)="populateDrug(p)" [routerLink]="['/drugEdit']" routerLinkActive="router-link-active" >
+                            <i class="bi bi-pencil-square"></i>Edit
+                    </a>
+                        <a  (click)="DeleteDrug(p.DrugId)" class="btn btn-outline-danger ms-4">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                </div>
+
+            </td>
+        </tr>
+
+
+    
+
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<app-footer></app-footer>

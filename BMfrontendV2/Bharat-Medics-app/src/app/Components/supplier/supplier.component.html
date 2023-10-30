@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row pt-4 pb-2 text-center">
+      <div class="col-6 text-primary">
+          <h2 style="color: white;">Supplier List</h2>
+
+      </div>
+      <div class="col-6 text-end">
+        <a  class="btn btn-primary" (click)="populateSupplier(ServiceSupl.DataSupplier)" [routerLink]="['/supplierForm']">
+            <i class="bi bi-person-add"></i>Add Supplier
+        </a>
+
+        </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Supplier Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Drug Name</th>
+        <th scope="col">Drug Quantity </th>
+        <th scope="col">Drug Price </th>
+        <th scople ="col"> Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of ServiceSupl.listSupplier | paginate : { itemsPerPage: 8, currentPage: p }">
+        
+        <td>{{x.SupplierName}}</td>
+        <td>{{x.Email}}</td>
+        <td>{{x.Drugs.DrugName}}</td>
+        <td>{{x.DrugQuantity}}</td>
+        <td>{{x.Drugs.Price}}</td>
+        <td><button class="btn btn-primary me-1" (click)="populateSupplier(x)"   [routerLink]="['/supplierForm']"> <i class="bi bi-pencil-square"></i>Edit</button> 
+          <button class="btn btn-danger ms-1 " (click)="DeleteSupplier(x.SupplierId)" >  <i class="bi bi-trash-fill"></i> Delete</button>
+        </td>
+      </tr>
+  
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<app-footer></app-footer>
+
+
+

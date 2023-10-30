@@ -1,0 +1,94 @@
+<app-header></app-header>
+<form class="p-3 m-3 frm" autocomplete="off" #orderForm="ngForm"  (ngSubmit)="orderForm.form.valid && submit(orderForm)" >
+
+
+    
+    <div class="border p-3 mt-2">
+        <div class="row pb-2">
+            <h2   class="text-primary text-center"  >
+              This is the final step 
+            </h2> 
+            
+        </div>
+        <ng-template #noCourses>
+            <h2 class="text-center text-primary">d</h2>
+          </ng-template>
+
+        
+
+        <div class="mb-3 row p-1 ">
+            <div class="col-6">
+                <label>Name</label>
+                
+                <input name="name"   #name="ngModel" [(ngModel)]="orderSerrvice.DataOrder.UserName" type="text" class="form-control" />
+
+            </div>
+            <div class="col-4">
+                <label>Address</label>
+                
+                <input  type="text" class="form-control" />
+  
+            </div>
+
+
+            
+        </div>
+        <div class="mb-3 row p-1 ">
+          <div class="col-4">
+              <label>State</label>
+              
+              <input  type="text" class="form-control" />
+
+          </div>
+          <div class="col-4">
+            <label>City</label>
+            
+            <input  type="text" class="form-control" />
+
+        </div>
+        <div class="col-4">
+          <label>Pincode</label>
+          
+          <input  type="number" class="form-control" />
+
+      </div>
+         
+      </div>
+
+        <div class="mb-3 row p-1 ">
+            
+           <label>Select Mode of Payment</label>
+            <select  name="add" #add="ngModel"  [(ngModel)]="orderSerrvice.DataOrder.Payment_Status" class="form-select" aria-label="Default select example">
+             
+              <option  value="COD">Cash On Delivery</option>
+              <option  value="EMI">EMI</option>
+              <option  value="Debit Card">Debit Card</option>
+            </select>
+            
+           
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-6 ">
+
+                <input type="submit" class="btn btn-dark form-control" value="Update" />
+
+
+            </div>
+            <div class="col-6 ">
+                <button  type="reset" class="btn btn-outline-secondary form-control">
+                    Reset
+                </button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</form>
+<app-footer></app-footer>

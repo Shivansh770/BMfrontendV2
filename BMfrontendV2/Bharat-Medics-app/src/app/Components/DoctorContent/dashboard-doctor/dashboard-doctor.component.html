@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="container ">
+    <div class="row">
+        <ng-container *ngFor="let item of ListDrug | paginate : { itemsPerPage: 6, currentPage: p }"  >
+            <div class= "card col-md-3 cld">
+                
+                <h5 class="text-center"><strong>Drug Name:</strong> {{item.drugs.DrugName}} </h5>
+                <h6 class="text-center"><strong>Supplier Name:</strong> {{item.SuppilerName}}</h6>
+                <p class="text-center"><strong>DrugQuantity:</strong> {{item.DrugQuantity}}</p>
+                <p class="text-center"><strong>Price:</strong> {{item.drugs.Price}}₹</p>
+                <button class="btn btn-outline-primary" (click)=addtocart(item)>Add to cart</button>
+            </div>
+        </ng-container>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </div>
+</div>
+<app-footer></app-footer>
